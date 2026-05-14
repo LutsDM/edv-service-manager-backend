@@ -1,4 +1,4 @@
-package de.edvservice.manager.report;
+package de.edvservice.manager.entity.report;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,9 +7,7 @@ import java.time.LocalTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import de.edvservice.manager.report.ServiceReport;
-
-import de.edvservice.manager.order.ServiceOrder;
+import de.edvservice.manager.entity.order.ServiceOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -130,7 +128,4 @@ public class ServiceReport {
 	@UpdateTimestamp
 	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
-
-	@OneToOne(mappedBy = "serviceOrder", fetch = FetchType.LAZY)
-	private ServiceReport serviceReport;
 }

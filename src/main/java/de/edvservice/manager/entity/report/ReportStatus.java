@@ -1,4 +1,4 @@
-package de.edvservice.manager.report;
+package de.edvservice.manager.entity.report;
 
 public enum ReportStatus {
 	DRAFT,

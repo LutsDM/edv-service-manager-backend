@@ -1,4 +1,4 @@
-package de.edvservice.manager.employee;
+package de.edvservice.manager.entity.employee;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package de.edvservice.manager.order;
+package de.edvservice.manager.entity.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import de.edvservice.manager.customer.Customer;
-import de.edvservice.manager.employee.Employee;
+import de.edvservice.manager.entity.customer.Customer;
+import de.edvservice.manager.entity.employee.Employee;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

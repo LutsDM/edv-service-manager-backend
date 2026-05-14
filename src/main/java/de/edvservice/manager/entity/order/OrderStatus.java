@@ -1,4 +1,4 @@
-package de.edvservice.manager.order;
+package de.edvservice.manager.entity.order;
 
 public enum OrderStatus {
 	DRAFT,

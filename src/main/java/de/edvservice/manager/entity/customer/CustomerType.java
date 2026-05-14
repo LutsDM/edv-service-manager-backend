@@ -1,4 +1,4 @@
-package de.edvservice.manager.customer;
+package de.edvservice.manager.entity.customer;
 
 public enum CustomerType {
 	PRIVATE,

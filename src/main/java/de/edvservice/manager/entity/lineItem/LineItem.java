@@ -1,7 +1,8 @@
-package de.edvservice.manager.report;
+package de.edvservice.manager.entity.lineItem;
 
 import java.math.BigDecimal;
 
+import de.edvservice.manager.entity.report.ServiceReport;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
