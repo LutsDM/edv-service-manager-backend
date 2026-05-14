@@ -1,6 +1,5 @@
 package de.edvservice.manager.customer;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
