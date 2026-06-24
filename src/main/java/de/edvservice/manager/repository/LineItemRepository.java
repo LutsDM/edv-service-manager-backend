@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import de.edvservice.manager.entity.lineItem.LineItem;
-import de.edvservice.manager.entity.report.ServiceReport;
+import de.edvservice.manager.entity.report.Report;
 
 @Repository
 public interface LineItemRepository extends JpaRepository<LineItem, Long> {
 
-	List<LineItem> findByServiceReportOrderByIdAsc(ServiceReport serviceReport);
+	List<LineItem> findByReportOrderByIdAsc(Report report);
 
-	List<LineItem> findByServiceReport_IdOrderByIdAsc(Long serviceReportId);
+	List<LineItem> findByReport_IdOrderByIdAsc(Long reportId);
 
-	void deleteByServiceReport_Id(Long serviceReportId);
+	void deleteByReport_Id(Long reportId);
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record ServiceOrderDto(
+public record OrderResponseDto(
 		Long id,
 		String orderNumber,
 		Long customerId,
@@ -14,8 +14,8 @@ public record ServiceOrderDto(
 		Integer employeeCount,
 		String orderDetails,
 		OrderStatus status,
-		String customerSignatureSvg,
-		String employeeSignatureSvg,
+		String customerSignatureData,
+		String employeeSignatureData,
 		LocalDateTime customerSignedAt,
 		LocalDateTime employeeSignedAt,
 		String customerNumberSnapshot,

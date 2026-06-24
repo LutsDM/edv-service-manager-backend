@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public record ServiceReportDto(
+public record ReportResponseDto(
 		Long id,
-		Long serviceOrderId,
+		Long orderId,
 		boolean includeArrival,
 		LocalTime arrivalStart,
 		LocalTime arrivalEnd,
@@ -25,8 +25,8 @@ public record ServiceReportDto(
 		BigDecimal extraPositionsAmount,
 		BigDecimal grossAmount,
 		String workDescription,
-		String customerSignatureSvg,
-		String employeeSignatureSvg,
+		String customerSignatureData,
+		String employeeSignatureData,
 		LocalDateTime customerSignedAt,
 		LocalDateTime employeeSignedAt,
 		ReportStatus status,

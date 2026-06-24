@@ -5,12 +5,14 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import de.edvservice.manager.entity.order.ServiceOrder;
+import de.edvservice.manager.entity.order.Order;
 
 @Repository
-public interface ServiceOrderRepository extends JpaRepository<ServiceOrder, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-	Optional<ServiceOrder> findByOrderNumber(String orderNumber);
+	Optional<Order> findByOrderNumber(String orderNumber);
 
 	boolean existsByOrderNumber(String orderNumber);
+
+	boolean existsByCustomer_Id(Long customerId);
 }

@@ -2,9 +2,9 @@ package de.edvservice.manager.entity.lineItem;
 
 import java.math.BigDecimal;
 
-public record LineItemDto(
+public record LineItemResponseDto(
 		Long id,
-		Long serviceReportId,
+		Long reportId,
 		String title,
 		Integer quantity,
 		BigDecimal unitPrice,

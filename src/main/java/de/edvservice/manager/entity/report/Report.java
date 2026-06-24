@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import de.edvservice.manager.entity.order.ServiceOrder;
+import de.edvservice.manager.entity.order.Order;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,7 +17,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -28,23 +27,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "service_reports")
+@Table(name = "reports")
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ServiceReport {
+public class Report {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "id")
 	private Long id;
 
-	@NotNull(message = "Service order is required.")
+	@NotNull(message = "Order is required.")
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "service_order_id", nullable = false, unique = true)
-	private ServiceOrder serviceOrder;
+	@JoinColumn(name = "order_id", nullable = false, unique = true)
+	private Order order;
 
 	@Column(name = "include_arrival", nullable = false)
 	private boolean includeArrival = false;
@@ -99,17 +98,14 @@ public class ServiceReport {
 	@Column(name = "gross_amount", precision = 10, scale = 2)
 	private BigDecimal grossAmount;
 
-	@Lob
-	@Column(name = "work_description")
+	@Column(name = "work_description", columnDefinition = "TEXT")
 	private String workDescription;
 
-	@Lob
-	@Column(name = "customer_signature_svg")
-	private String customerSignatureSvg;
+	@Column(name = "customer_signature_data", columnDefinition = "TEXT")
+	private String customerSignatureData;
 
-	@Lob
-	@Column(name = "employee_signature_svg")
-	private String employeeSignatureSvg;
+	@Column(name = "employee_signature_data", columnDefinition = "TEXT")
+	private String employeeSignatureData;
 
 	@Column(name = "customer_signed_at")
 	private LocalDateTime customerSignedAt;

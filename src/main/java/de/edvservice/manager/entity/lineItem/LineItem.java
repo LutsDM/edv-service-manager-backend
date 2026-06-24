@@ -2,7 +2,7 @@ package de.edvservice.manager.entity.lineItem;
 
 import java.math.BigDecimal;
 
-import de.edvservice.manager.entity.report.ServiceReport;
+import de.edvservice.manager.entity.report.Report;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,13 +27,13 @@ import lombok.Setter;
 public class LineItem {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "service_report_id", nullable = false)
-	private ServiceReport serviceReport;
+	@JoinColumn(name = "report_id", nullable = false)
+	private Report report;
 
 	@Column(name = "title", nullable = false)
 	private String title;

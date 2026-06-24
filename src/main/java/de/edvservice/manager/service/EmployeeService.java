@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.edvservice.manager.entity.employee.EmployeeDto;
+import de.edvservice.manager.entity.employee.EmployeeResponseDto;
 import de.edvservice.manager.entity.employee.mapper.EmployeeMapper;
 import de.edvservice.manager.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +20,15 @@ public class EmployeeService {
 	private final EmployeeRepository employeeRepository;
 	private final EmployeeMapper employeeMapper;
 
-	public Optional<EmployeeDto> findById(Long id) {
-		return employeeRepository.findById(id).map(employeeMapper::toDto);
+	public Optional<EmployeeResponseDto> findById(Long id) {
+		return employeeRepository.findById(id).map(employeeMapper::toResponseDto);
 	}
 
-	public Optional<EmployeeDto> findByEmail(String email) {
-		return employeeRepository.findByEmailIgnoreCase(email).map(employeeMapper::toDto);
+	public Optional<EmployeeResponseDto> findByEmail(String email) {
+		return employeeRepository.findByEmailIgnoreCase(email).map(employeeMapper::toResponseDto);
 	}
 
-	public Page<EmployeeDto> findAll(Pageable pageable) {
-		return employeeRepository.findAll(pageable).map(employeeMapper::toDto);
+	public Page<EmployeeResponseDto> findAll(Pageable pageable) {
+		return employeeRepository.findAll(pageable).map(employeeMapper::toResponseDto);
 	}
 }

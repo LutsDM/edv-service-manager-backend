@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.edvservice.manager.entity.order.ServiceOrderDto;
-import de.edvservice.manager.service.ServiceOrderService;
+import de.edvservice.manager.entity.order.OrderResponseDto;
+import de.edvservice.manager.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/service-orders")
+@RequestMapping("/api/orders")
 @RequiredArgsConstructor
-public class ServiceOrderController {
+public class OrderController {
 
-	private final ServiceOrderService serviceOrderService;
+	private final OrderService orderService;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ServiceOrderDto> getById(@PathVariable Long id) {
-		return serviceOrderService.findById(id)
+	public ResponseEntity<OrderResponseDto> getById(@PathVariable Long id) {
+		return orderService.findById(id)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping(params = "orderNumber")
-	public ResponseEntity<ServiceOrderDto> getByOrderNumber(@RequestParam String orderNumber) {
-		return serviceOrderService.findByOrderNumber(orderNumber)
+	public ResponseEntity<OrderResponseDto> getByOrderNumber(@RequestParam String orderNumber) {
+		return orderService.findByOrderNumber(orderNumber)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping
-	public Page<ServiceOrderDto> list(Pageable pageable) {
-		return serviceOrderService.findAll(pageable);
+	public Page<OrderResponseDto> list(Pageable pageable) {
+		return orderService.findAll(pageable);
 	}
 }

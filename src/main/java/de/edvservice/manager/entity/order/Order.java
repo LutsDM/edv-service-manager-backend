@@ -18,7 +18,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -29,15 +28,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "service_orders")
+@Table(name = "orders")
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ServiceOrder {
+public class Order {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "id")
 	private Long id;
@@ -65,21 +64,18 @@ public class ServiceOrder {
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
-	@Lob
-	@Column(name = "order_details")
+	@Column(name = "order_details", columnDefinition = "TEXT")
 	private String orderDetails;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", nullable = false, length = 32)
 	private OrderStatus status = OrderStatus.DRAFT;
 
-	@Lob
-	@Column(name = "customer_signature_svg")
-	private String customerSignatureSvg;
+	@Column(name = "customer_signature_data", columnDefinition = "TEXT")
+	private String customerSignatureData;
 
-	@Lob
-	@Column(name = "employee_signature_svg")
-	private String employeeSignatureSvg;
+	@Column(name = "employee_signature_data", columnDefinition = "TEXT")
+	private String employeeSignatureData;
 
 	@Column(name = "customer_signed_at")
 	private LocalDateTime customerSignedAt;

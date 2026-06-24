@@ -2,7 +2,7 @@ package de.edvservice.manager.entity.customer;
 
 import java.time.LocalDateTime;
 
-public record CustomerDto(
+public record CustomerResponseDto(
 		Long id,
 		String customerNumber,
 		CustomerType type,

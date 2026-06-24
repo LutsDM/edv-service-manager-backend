@@ -34,7 +34,7 @@ import lombok.Setter;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "id")
 	private Long id;
