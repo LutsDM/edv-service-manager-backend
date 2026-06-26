@@ -15,4 +15,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	boolean existsByOrderNumber(String orderNumber);
 
 	boolean existsByCustomer_Id(Long customerId);
+
+	boolean existsByEmployee_Id(Long employeeId);
+
+	boolean existsByOrderNumberAndIdNot(String orderNumber, Long id);
 }

@@ -29,6 +29,41 @@ public class GlobalExceptionHandler {
 		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
 	}
 
+	@ExceptionHandler(EmployeeNotFoundException.class)
+	public ProblemDetail handleEmployeeNotFound(EmployeeNotFoundException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
+
+	@ExceptionHandler(DuplicateEmployeeEmailException.class)
+	public ProblemDetail handleDuplicateEmployeeEmail(DuplicateEmployeeEmailException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(EmployeeInUseException.class)
+	public ProblemDetail handleEmployeeInUse(EmployeeInUseException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(OrderNotFoundException.class)
+	public ProblemDetail handleOrderNotFound(OrderNotFoundException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
+
+	@ExceptionHandler(DuplicateOrderNumberException.class)
+	public ProblemDetail handleDuplicateOrderNumber(DuplicateOrderNumberException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(OrderAlreadyHasReportException.class)
+	public ProblemDetail handleOrderAlreadyHasReport(OrderAlreadyHasReportException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(ReportNotFoundException.class)
+	public ProblemDetail handleReportNotFound(ReportNotFoundException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ProblemDetail> handleValidation(MethodArgumentNotValidException ex) {
 		Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()

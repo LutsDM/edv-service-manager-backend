@@ -40,10 +40,12 @@ public class Report {
 	@Column(name = "id")
 	private Long id;
 
-	@NotNull(message = "Order is required.")
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "order_id", nullable = false, unique = true)
+	@JoinColumn(name = "order_id", unique = true)
 	private Order order;
+
+	@Column(name = "external_order_number", length = 64)
+	private String externalOrderNumber;
 
 	@Column(name = "include_arrival", nullable = false)
 	private boolean includeArrival = false;

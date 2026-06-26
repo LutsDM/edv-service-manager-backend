@@ -104,6 +104,52 @@ Current project priorities:
 
 ---
 
+# Service Workflow
+
+The application supports two independent workflow scenarios.
+
+## 1. Workflow with a digital service order
+
+1. Create a service order draft.
+2. Enter and validate the service order data.
+3. Collect the customer and employee signatures.
+4. Save the signed service order.
+5. Create a service report draft based on the saved service order.
+6. Enter the performed work and report details.
+7. Collect the customer and employee signatures.
+8. Save the signed service report.
+
+```text
+Order Draft → Sign Order → Save Order → Report Draft → Sign Report → Save Report
+```
+
+## 2. Workflow without a digital service order
+
+A report can be created independently when the original order was received on paper or through another external process.
+
+1. Create a standalone report draft.
+2. Enter the customer, service, and performed work details.
+3. Optionally enter the external or paper order number (`externalOrderNumber`).
+4. Collect the customer and employee signatures.
+5. Save the signed service report.
+
+```text
+Report Draft → Sign Report → Save Report
+```
+
+## Data model rule
+
+The `order` relationship on `Report` is **optional**.
+
+A `Report` may:
+- reference an existing digital `Order` (`order_id`)
+- reference an external/paper order number (`external_order_number`)
+- exist without any order reference
+
+**Never require a digital `Order` to exist before creating a `Report`.**
+
+---
+
 # AI Restrictions
 
 - Do not rewrite existing architecture
@@ -257,4 +303,4 @@ Validation rules:
 - Do not name signature fields `*Svg` — format is PNG data URL, use `*SignatureData`
 - Hibernate does not rename DB columns; change `@Column(name)` or recreate schema in dev
 - Do not rely on `ddl-auto: update` in production — switch to `validate` + schema tooling later
-```
+- Do not make `Report.order` required — the order reference is optional by design (standalone report workflow exists)
