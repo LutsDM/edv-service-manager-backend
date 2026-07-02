@@ -69,6 +69,11 @@ public class GlobalExceptionHandler {
 		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
 	}
 
+	@ExceptionHandler(SignatureModificationException.class)
+	public ProblemDetail handleSignatureModification(SignatureModificationException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ProblemDetail> handleValidation(MethodArgumentNotValidException ex) {
 		Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()

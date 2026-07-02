@@ -33,6 +33,7 @@ public class ReportService {
 	private final OrderRepository orderRepository;
 	private final LineItemRepository lineItemRepository;
 	private final ReportMapper reportMapper;
+	private final SignatureService signatureService;
 
 	@Transactional(readOnly = true)
 	public Optional<ReportResponseDto> findById(Long id) {
@@ -69,6 +70,8 @@ public class ReportService {
 			report.setOrder(order);
 		}
 
+		signatureService.applyToReport(report, request.customerSignatureData(), request.employeeSignatureData());
+
 		return reportMapper.toResponseDto(reportRepository.save(report));
 	}
 
@@ -88,6 +91,8 @@ public class ReportService {
 					.ifPresent(existing -> { throw new OrderAlreadyHasReportException(request.orderId()); });
 			report.setOrder(order);
 		}
+
+		signatureService.applyToReport(report, request.customerSignatureData(), request.employeeSignatureData());
 
 		return reportMapper.toResponseDto(reportRepository.save(report));
 	}

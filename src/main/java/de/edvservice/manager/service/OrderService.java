@@ -33,6 +33,7 @@ public class OrderService {
 	private final EmployeeRepository employeeRepository;
 	private final ReportRepository reportRepository;
 	private final OrderMapper orderMapper;
+	private final SignatureService signatureService;
 
 	@Transactional(readOnly = true)
 	public Optional<OrderResponseDto> findById(Long id) {
@@ -68,6 +69,7 @@ public class OrderService {
 		}
 
 		applyCustomerSnapshot(order, customer);
+		signatureService.applyToOrder(order, request.customerSignatureData(), request.employeeSignatureData());
 
 		return orderMapper.toResponseDto(orderRepository.save(order));
 	}
@@ -96,6 +98,7 @@ public class OrderService {
 		}
 
 		applyCustomerSnapshot(order, customer);
+		signatureService.applyToOrder(order, request.customerSignatureData(), request.employeeSignatureData());
 
 		return orderMapper.toResponseDto(orderRepository.save(order));
 	}

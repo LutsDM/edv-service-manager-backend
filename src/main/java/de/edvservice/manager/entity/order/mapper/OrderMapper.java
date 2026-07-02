@@ -19,6 +19,11 @@ public interface OrderMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "customer", ignore = true)
 	@Mapping(target = "employee", ignore = true)
+	@Mapping(target = "status", ignore = true)
+	@Mapping(target = "customerSignatureData", ignore = true)
+	@Mapping(target = "employeeSignatureData", ignore = true)
+	@Mapping(target = "customerSignedAt", ignore = true)
+	@Mapping(target = "employeeSignedAt", ignore = true)
 	@Mapping(target = "createdAt", ignore = true)
 	@Mapping(target = "updatedAt", ignore = true)
 	Order toEntity(OrderRequestDto request);
@@ -26,6 +31,11 @@ public interface OrderMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "customer", ignore = true)
 	@Mapping(target = "employee", ignore = true)
+	@Mapping(target = "status", ignore = true)
+	@Mapping(target = "customerSignatureData", ignore = true)
+	@Mapping(target = "employeeSignatureData", ignore = true)
+	@Mapping(target = "customerSignedAt", ignore = true)
+	@Mapping(target = "employeeSignedAt", ignore = true)
 	@Mapping(target = "createdAt", ignore = true)
 	@Mapping(target = "updatedAt", ignore = true)
 	void updateEntity(OrderRequestDto request, @MappingTarget Order order);

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import de.edvservice.manager.validation.ValidSignatureData;
+
 public record OrderRequestDto(
 		@NotBlank(message = "Order number can't be empty.")
 		String orderNumber,
@@ -17,6 +19,10 @@ public record OrderRequestDto(
 		BigDecimal hourlyRate,
 		Integer employeeCount,
 		Long employeeId,
-		String orderDetails
+		String orderDetails,
+		@ValidSignatureData
+		String customerSignatureData,
+		@ValidSignatureData
+		String employeeSignatureData
 ) {
 }

@@ -5,6 +5,8 @@ import java.time.LocalTime;
 
 import jakarta.validation.constraints.NotNull;
 
+import de.edvservice.manager.validation.ValidSignatureData;
+
 public record ReportRequestDto(
 		Long orderId,
 		String externalOrderNumber,
@@ -27,6 +29,10 @@ public record ReportRequestDto(
 		BigDecimal taxAmount,
 		BigDecimal extraPositionsAmount,
 		BigDecimal grossAmount,
-		String workDescription
+		String workDescription,
+		@ValidSignatureData
+		String customerSignatureData,
+		@ValidSignatureData
+		String employeeSignatureData
 ) {
 }
