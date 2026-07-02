@@ -64,6 +64,11 @@ public class GlobalExceptionHandler {
 		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
 	}
 
+	@ExceptionHandler(LineItemNotFoundException.class)
+	public ProblemDetail handleLineItemNotFound(LineItemNotFoundException ex) {
+		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ProblemDetail> handleValidation(MethodArgumentNotValidException ex) {
 		Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()

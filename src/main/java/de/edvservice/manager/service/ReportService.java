@@ -16,6 +16,7 @@ import de.edvservice.manager.entity.report.Report;
 import de.edvservice.manager.entity.report.ReportRequestDto;
 import de.edvservice.manager.entity.report.ReportResponseDto;
 import de.edvservice.manager.entity.report.mapper.ReportMapper;
+import de.edvservice.manager.exception.LineItemNotFoundException;
 import de.edvservice.manager.exception.OrderAlreadyHasReportException;
 import de.edvservice.manager.exception.OrderNotFoundException;
 import de.edvservice.manager.exception.ReportNotFoundException;
@@ -114,6 +115,9 @@ public class ReportService {
 		if (!reportRepository.existsById(reportId)) {
 			throw new ReportNotFoundException(reportId);
 		}
-		lineItemRepository.deleteById(lineItemId);
+		LineItem lineItem = lineItemRepository.findById(lineItemId)
+				.filter(item -> item.getReport().getId().equals(reportId))
+				.orElseThrow(() -> new LineItemNotFoundException(lineItemId));
+		lineItemRepository.delete(lineItem);
 	}
 }
